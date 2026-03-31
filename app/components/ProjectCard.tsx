@@ -1,16 +1,22 @@
 import Link from "next/link";
 import { Project } from "../data/portfolio";
+import { getIllustration } from "./ProjectIllustrations";
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
     <Link href={`/projects/${project.slug}`} className="group block">
       <div className="rounded-2xl border border-border bg-white overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-        {/* Color banner */}
+        {/* Color banner with illustration */}
         <div
-          className="h-48 md:h-56 flex items-end p-8"
+          className="h-56 md:h-64 relative flex items-end p-8"
           style={{ backgroundColor: project.color }}
         >
-          <div>
+          {/* Illustration */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-60 group-hover:opacity-80 transition-opacity">
+            {getIllustration(project.slug)}
+          </div>
+
+          <div className="relative z-10">
             <p className="text-white/70 text-sm font-medium mb-1">
               {project.company}
             </p>
