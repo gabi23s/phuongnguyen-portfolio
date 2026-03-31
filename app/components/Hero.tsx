@@ -2,46 +2,90 @@
 
 import { profile } from "../data/portfolio";
 import { useLang } from "./LangProvider";
-import { WavyBackground, BlobDecoration, LoopLine, ScribbleUnderline } from "./Decorations";
 
 export default function Hero() {
   const { t } = useLang();
 
   return (
-    <section className="pt-32 pb-20 px-6 relative overflow-hidden">
-      {/* Hand-drawn decorations */}
-      <WavyBackground className="top-16 left-0 right-0 w-full h-48 text-foreground" />
-      <BlobDecoration className="top-20 -right-20 w-80 h-80 text-accent" />
-      <LoopLine className="-left-10 bottom-10 w-72 h-24 text-foreground" />
+    <section className="pt-28 pb-16 px-6 relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-32 right-12 section-number hidden md:block select-none">01</div>
+      <svg className="absolute top-40 left-8 w-16 h-16 text-accent opacity-20 hidden md:block" viewBox="0 0 60 60" fill="none">
+        <circle cx="30" cy="30" r="28" stroke="currentColor" strokeWidth="2" strokeDasharray="4 6" />
+      </svg>
 
-      <div className="max-w-6xl mx-auto relative">
-        <div className="animate-fade-in-up">
-          <p className="text-accent text-sm font-medium mb-4 tracking-wide uppercase">
-            {profile.title}
-          </p>
-        </div>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight mb-6 animate-fade-in-up animate-delay-100 opacity-0 relative inline-block">
-          {t.hero.greeting} {profile.name}
-          <ScribbleUnderline className="bottom-0 left-0 w-full h-3 text-accent" />
-        </h1>
-        <p className="text-lg md:text-xl text-muted max-w-2xl leading-relaxed mb-8 animate-fade-in-up animate-delay-200 opacity-0">
-          {profile.subtitle}
-        </p>
-        <div className="flex gap-4 animate-fade-in-up animate-delay-300 opacity-0">
-          <a
-            href="#work"
-            className="inline-flex items-center px-6 py-3 bg-foreground text-white rounded-full text-sm font-medium hover:bg-foreground/90 transition-colors"
-          >
-            {t.hero.cta}
-          </a>
-          <a
-            href={profile.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 border border-border rounded-full text-sm font-medium hover:bg-gray-50 transition-colors"
-          >
-            LinkedIn
-          </a>
+      <div className="max-w-7xl mx-auto relative">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Left — Text */}
+          <div>
+            <div className="animate-fade-in-up">
+              <span className="inline-block px-4 py-1.5 bg-accent/10 text-accent-dark text-xs font-bold tracking-widest uppercase rounded-full mb-6">
+                {profile.title}
+              </span>
+            </div>
+
+            <h1 className="animate-fade-in-up animate-delay-100 opacity-0">
+              <span className="block font-[family-name:var(--font-hand)] text-accent text-2xl md:text-3xl mb-2">
+                {t.hero.greeting}
+              </span>
+              <span className="block font-[family-name:var(--font-display)] text-5xl md:text-7xl font-black tracking-tight leading-none">
+                {profile.name.split(" ")[0]}
+              </span>
+              <span className="block font-[family-name:var(--font-display)] text-5xl md:text-7xl font-black tracking-tight leading-none mt-1">
+                {profile.name.split(" ").slice(1).join(" ")}
+                <span className="text-accent">.</span>
+              </span>
+            </h1>
+
+            <p className="text-muted text-base md:text-lg leading-relaxed mt-8 max-w-lg animate-fade-in-up animate-delay-200 opacity-0">
+              {profile.subtitle}
+            </p>
+
+            <div className="flex gap-4 mt-8 animate-fade-in-up animate-delay-300 opacity-0">
+              <a
+                href="#work"
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-accent text-white rounded-full text-sm font-bold hover:bg-accent-dark transition-colors shadow-lg shadow-accent/25"
+              >
+                {t.hero.cta}
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
+              </a>
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-7 py-3.5 border-2 border-dark rounded-full text-sm font-bold hover:bg-dark hover:text-white transition-colors"
+              >
+                LinkedIn
+              </a>
+            </div>
+          </div>
+
+          {/* Right — Photo placeholder */}
+          <div className="relative flex justify-center animate-fade-in-up animate-delay-200 opacity-0">
+            <div className="relative">
+              {/* Yellow background shape */}
+              <div className="absolute -top-4 -right-4 w-72 h-80 md:w-80 md:h-96 bg-accent rounded-3xl rotate-3" />
+              {/* Photo container */}
+              <div className="relative w-72 h-80 md:w-80 md:h-96 bg-dark rounded-3xl overflow-hidden -rotate-2">
+                {/* Placeholder — Gabi gửi ảnh thay sau */}
+                <div className="absolute inset-0 flex items-center justify-center text-white/30">
+                  <div className="text-center">
+                    <svg className="w-16 h-16 mx-auto mb-3 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 0115 0" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <p className="text-sm font-medium">Your Photo</p>
+                  </div>
+                </div>
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -bottom-6 -left-6 w-20 h-20 border-4 border-accent rounded-full opacity-30" />
+              <svg className="absolute -top-8 -left-8 w-12 h-12 text-accent" viewBox="0 0 40 40" fill="none">
+                <path d="M20 5L23 17L35 20L23 23L20 35L17 23L5 20L17 17Z" fill="currentColor" opacity="0.4" />
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,10 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useCallback } from "react";
-import { Locale, translations } from "../data/i18n";
-
-type DeepMutable<T> = { -readonly [K in keyof T]: DeepMutable<T[K]> };
-type Translations = DeepMutable<(typeof translations)["en"]>;
+import { Locale, Translations, translations } from "../data/i18n";
 
 interface LangContextType {
   locale: Locale;
@@ -26,9 +23,7 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <LangContext.Provider
-      value={{ locale, t: translations[locale] as unknown as Translations, toggle }}
-    >
+    <LangContext.Provider value={{ locale, t: translations[locale], toggle }}>
       {children}
     </LangContext.Provider>
   );

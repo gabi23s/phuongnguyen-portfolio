@@ -15,6 +15,7 @@ export interface Project {
   results: { metric: string; label: string }[];
   lessons: string[];
   teamSize: string;
+  screenshot?: string;
 }
 
 export interface Profile {
