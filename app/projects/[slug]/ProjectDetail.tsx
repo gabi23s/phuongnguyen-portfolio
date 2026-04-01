@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { Project } from "../../data/portfolio";
 import { LangProvider, useLang } from "../../components/LangProvider";
 import Header from "../../components/Header";
@@ -24,10 +23,6 @@ function ProjectContent({
       <main className="flex-1">
         {/* Hero */}
         <section className="pt-28 pb-16 px-6 relative overflow-hidden" style={{ backgroundColor: project.color }}>
-          <div className="absolute top-20 right-16 section-number !text-white/10 hidden md:block select-none">
-            {String(1).padStart(2, "0")}
-          </div>
-
           <div className="max-w-5xl mx-auto relative">
             <Link
               href="/#work"
@@ -42,7 +37,7 @@ function ProjectContent({
             <div className="grid md:grid-cols-2 gap-12 items-end">
               <div>
                 <span className="text-white/50 text-xs font-bold uppercase tracking-widest">
-                  {project.company} / {project.role}
+                  {pc?.company || project.company} / {pc?.role || project.role}
                 </span>
                 <h1 className="font-[family-name:var(--font-display)] text-3xl md:text-5xl font-black text-white mt-3 leading-tight">
                   {pc?.title || project.title}
@@ -53,15 +48,20 @@ function ProjectContent({
                 </p>
                 <div className="flex gap-6 mt-6 text-sm text-white/40">
                   <span>{project.period}</span>
-                  <span>{t.project.team}: {project.teamSize}</span>
+                  <span>{t.project.team}: {pc?.teamSize || project.teamSize}</span>
                 </div>
               </div>
 
-              {/* Screenshot placeholder */}
+              {/* Screenshot */}
               <div className="relative">
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 overflow-hidden aspect-[4/3]">
                   {project.screenshot ? (
-                    <Image src={project.screenshot} alt={pc?.title || project.title} fill className="object-cover" />
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src={project.screenshot}
+                      alt={pc?.title || project.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center text-white/30">
                       <div className="text-center">
@@ -69,7 +69,7 @@ function ProjectContent({
                           <rect x="2" y="3" width="20" height="14" rx="2" />
                           <path d="M8 21h8M12 17v4" />
                         </svg>
-                        <p className="text-sm">Project Screenshot</p>
+                        <p className="text-sm">Screenshot</p>
                       </div>
                     </div>
                   )}
@@ -200,7 +200,7 @@ function ProjectContent({
               {nextPc?.title || nextProject.title}
               <span className="text-muted/30">.</span>
             </Link>
-            <p className="text-muted text-sm mt-2">{nextProject.company}</p>
+            <p className="text-muted text-sm mt-2">{nextPc?.company || nextProject.company}</p>
           </div>
         </section>
       </main>

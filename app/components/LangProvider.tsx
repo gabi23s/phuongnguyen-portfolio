@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback } from "react";
+import { createContext, useContext, useState, useCallback, useEffect } from "react";
 import { Locale, Translations, translations } from "../data/i18n";
 
 interface LangContextType {
@@ -16,7 +16,16 @@ const LangContext = createContext<LangContextType>({
 });
 
 export function LangProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocale] = useState<Locale>("en");
+  const [locale, setLocale] = useState<Locale>(() => {
+    if (typeof window !== "undefined") {
+      return (localStorage.getItem("locale") as Locale) || "en";
+    }
+    return "en";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("locale", locale);
+  }, [locale]);
 
   const toggle = useCallback(() => {
     setLocale((prev) => (prev === "en" ? "vi" : "en"));

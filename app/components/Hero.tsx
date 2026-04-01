@@ -39,7 +39,7 @@ export default function Hero() {
             </h1>
 
             <p className="text-muted text-base md:text-lg leading-relaxed mt-8 max-w-lg animate-fade-in-up animate-delay-200 opacity-0">
-              {profile.subtitle}
+              {t.hero.subtitle}
             </p>
 
             <div className="flex gap-4 mt-8 animate-fade-in-up animate-delay-300 opacity-0">
@@ -70,12 +70,11 @@ export default function Hero() {
               <div className="absolute -top-4 -right-4 w-72 h-80 md:w-80 md:h-96 bg-accent rounded-3xl rotate-3" />
               {/* Photo container */}
               <div className="relative w-72 h-80 md:w-80 md:h-96 bg-dark rounded-3xl overflow-hidden -rotate-2">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src="/images/portrait.jpg"
                   alt="Phuong Nguyen"
-                  fill
-                  className="object-cover object-top"
-                  priority
+                  className="absolute inset-0 w-full h-full object-cover object-top"
                 />
               </div>
               {/* Decorative elements */}

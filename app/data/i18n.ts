@@ -1,50 +1,11 @@
 export type Locale = "en" | "vi";
 
-interface NavStrings {
-  work: string;
-  about: string;
-  contact: string;
-}
-
-interface HeroStrings {
-  greeting: string;
-  cta: string;
-}
-
-interface WorkStrings {
-  title: string;
-  subtitle: string;
-}
-
-interface AboutStrings {
-  title: string;
-  summary: string;
-  extra: string;
-  tools: string;
-  frameworks: string;
-  certifications: string;
-  education: string;
-}
-
-interface ProjectStrings {
-  backToWork: string;
-  overview: string;
-  challenge: string;
-  process: string;
-  solutions: string;
-  lessons: string;
-  nextCase: string;
-  team: string;
-}
-
-interface FooterStrings {
-  title: string;
-  subtitle: string;
-}
-
 interface ProjectContent {
   title: string;
+  company: string;
+  role: string;
   tagline: string;
+  teamSize: string;
   overview: string;
   challenge: string;
   process: string[];
@@ -54,12 +15,29 @@ interface ProjectContent {
 }
 
 export interface Translations {
-  nav: NavStrings;
-  hero: HeroStrings;
-  work: WorkStrings;
-  about: AboutStrings;
-  project: ProjectStrings;
-  footer: FooterStrings;
+  nav: { work: string; about: string; contact: string };
+  hero: { greeting: string; cta: string; subtitle: string };
+  work: { title: string; subtitle: string };
+  about: {
+    title: string;
+    summary: string;
+    extra: string;
+    tools: string;
+    frameworks: string;
+    certifications: string;
+    education: string;
+  };
+  project: {
+    backToWork: string;
+    overview: string;
+    challenge: string;
+    process: string;
+    solutions: string;
+    lessons: string;
+    nextCase: string;
+    team: string;
+  };
+  footer: { title: string; subtitle: string };
   projects: Record<string, ProjectContent>;
 }
 
@@ -69,18 +47,16 @@ export const translations: Record<Locale, Translations> = {
     hero: {
       greeting: "Hi, I'm",
       cta: "View my work",
+      subtitle: "10 years in SaaS, HealthTech & B2B Marketplace. Building products with AI.",
     },
     work: {
       title: "Selected Work",
-      subtitle:
-        "Case studies from 10 years of building products in HealthTech, Commerce, and B2B.",
+      subtitle: "Case studies from 10 years of building products in HealthTech, Commerce, and B2B.",
     },
     about: {
       title: "About",
-      summary:
-        "I build products from scratch, ship AI features into real products, manage product teams of 3-8 people and work with cross-functional teams up to 15 people.",
-      extra:
-        "I focus on execution — understanding the business problem, shipping the right solution, and measuring what matters. I work best when I can go deep on a product and own the outcome end-to-end.",
+      summary: "I build products from scratch, ship AI features into real products, manage product teams of 3-8 people and work with cross-functional teams up to 15 people.",
+      extra: "I focus on execution — understanding the business problem, shipping the right solution, and measuring what matters. I work best when I can go deep on a product and own the outcome end-to-end.",
       tools: "Tools",
       frameworks: "Frameworks",
       certifications: "Certifications",
@@ -103,11 +79,12 @@ export const translations: Record<Locale, Translations> = {
     projects: {
       arobid: {
         title: "B2B Marketplace Platform",
+        company: "Arobid Technology",
+        role: "Product Team Lead",
         tagline: "Building a B2B marketplace from scratch with AI-powered features",
-        overview:
-          "Led the creation of a B2B Marketplace platform from the ground up — defining requirements, managing the backlog, and coordinating cross-functional delivery. The platform includes AI-powered features for company data collection, buyer-supplier matching, and scoring systems.",
-        challenge:
-          "Vietnam's B2B trade still relies heavily on manual processes and fragmented channels. There was no unified platform that could intelligently connect buyers and suppliers while automating verification and matching.",
+        teamSize: "3 product, 10 cross-functional",
+        overview: "Led the creation of a B2B Marketplace platform from the ground up — defining requirements, managing the backlog, and coordinating cross-functional delivery. The platform includes AI-powered features for company data collection, buyer-supplier matching, and scoring systems.",
+        challenge: "Vietnam's B2B trade still relies heavily on manual processes and fragmented channels. There was no unified platform that could intelligently connect buyers and suppliers while automating verification and matching.",
         process: [
           "Market & competitor research for B2B platforms in SEA",
           "Define product vision and MVP scope with stakeholders",
@@ -135,11 +112,12 @@ export const translations: Record<Locale, Translations> = {
       },
       haravan: {
         title: "Social Commerce Platform",
+        company: "Haravan Technology",
+        role: "Product Owner",
         tagline: "Scaling multi-module commerce products for B2B merchants",
-        overview:
-          "Owned multiple product modules — Live Chat, Order Management, and CRM — serving B2B merchants. Set roadmaps based on business OKRs, shipped 15-20 features per month, and worked with a cross-functional team of 15 people across multiple squads.",
-        challenge:
-          "Merchants needed a unified platform to manage conversations, orders, and customer relationships across multiple sales channels. Fragmented tools led to high operation costs and poor customer experience.",
+        teamSize: "15 cross-functional, multi-squad",
+        overview: "Owned multiple product modules — Live Chat, Order Management, and CRM — serving B2B merchants. Set roadmaps based on business OKRs, shipped 15-20 features per month, and worked with a cross-functional team of 15 people across multiple squads.",
+        challenge: "Merchants needed a unified platform to manage conversations, orders, and customer relationships across multiple sales channels. Fragmented tools led to high operation costs and poor customer experience.",
         process: [
           "Deep user research with merchants of different scales",
           "Define success metrics aligned with business OKRs",
@@ -167,11 +145,12 @@ export const translations: Record<Locale, Translations> = {
       },
       "qa-solutions": {
         title: "Hospital Information System",
+        company: "QA Solutions",
+        role: "Product Owner & BA",
         tagline: "Building healthcare systems that serve 10,000+ patients monthly",
-        overview:
-          "Defined requirements and designed solutions for core hospital system modules: appointment booking, Electronic Medical Records (EMR), payment processing, inventory management, and reporting. Coordinated a team of 13 across development, testing, and design.",
-        challenge:
-          "Hospitals in Vietnam were running on paper-based or fragmented systems. Patient data was siloed, scheduling was manual, and compliance with Ministry of Health regulations was inconsistent.",
+        teamSize: "13 people (8 dev, 4 QA, 1 designer)",
+        overview: "Defined requirements and designed solutions for core hospital system modules: appointment booking, Electronic Medical Records (EMR), payment processing, inventory management, and reporting. Coordinated a team of 13 across development, testing, and design.",
+        challenge: "Hospitals in Vietnam were running on paper-based or fragmented systems. Patient data was siloed, scheduling was manual, and compliance with Ministry of Health regulations was inconsistent.",
         process: [
           "Shadow doctors, nurses, and admin staff to understand real workflows",
           "Map end-to-end patient journeys from booking to discharge",
@@ -199,11 +178,12 @@ export const translations: Record<Locale, Translations> = {
       },
       laztar: {
         title: "Multi-Product Consulting",
+        company: "Laztar LLC",
+        role: "Business Solution Manager",
         tagline: "Building products from scratch across Sports, MMO, and Outsourcing",
-        overview:
-          "Leading product development from scratch across multiple business domains — Sports Booking, MMO platforms, and Outsourcing services. Analyzing business needs, building business cases, defining go-to-market strategies, and managing a product team of 8.",
-        challenge:
-          "A growing company expanding into multiple verticals simultaneously needed structured product thinking to avoid scattered efforts and ensure each product had a viable path to market.",
+        teamSize: "8 product team members",
+        overview: "Leading product development from scratch across multiple business domains — Sports Booking, MMO platforms, and Outsourcing services. Analyzing business needs, building business cases, defining go-to-market strategies, and managing a product team of 8.",
+        challenge: "A growing company expanding into multiple verticals simultaneously needed structured product thinking to avoid scattered efforts and ensure each product had a viable path to market.",
         process: [
           "Analyze business opportunities and validate product-market fit for each vertical",
           "Build business cases with revenue models and competitive positioning",
@@ -236,18 +216,16 @@ export const translations: Record<Locale, Translations> = {
     hero: {
       greeting: "Xin chào, tôi là",
       cta: "Xem dự án",
+      subtitle: "10 năm kinh nghiệm SaaS, HealthTech & B2B Marketplace. Phát triển sản phẩm tích hợp AI.",
     },
     work: {
       title: "Dự Án Tiêu Biểu",
-      subtitle:
-        "Case study từ 10 năm xây dựng sản phẩm trong lĩnh vực Y tế, Thương mại và B2B.",
+      subtitle: "Case study từ 10 năm xây dựng sản phẩm trong lĩnh vực Y tế, Thương mại và B2B.",
     },
     about: {
       title: "Giới Thiệu",
-      summary:
-        "Tôi xây dựng sản phẩm từ đầu, tích hợp AI vào sản phẩm thực tế, quản lý đội product 3-8 người và phối hợp đội cross-functional tới 15 người.",
-      extra:
-        "Tôi tập trung vào thực thi — hiểu vấn đề kinh doanh, ship đúng giải pháp, và đo lường những gì quan trọng. Tôi làm tốt nhất khi được đi sâu vào sản phẩm và chịu trách nhiệm toàn bộ kết quả.",
+      summary: "Tôi xây dựng sản phẩm từ đầu, tích hợp AI vào sản phẩm thực tế, quản lý đội product 3-8 người và phối hợp đội cross-functional tới 15 người.",
+      extra: "Tôi tập trung vào thực thi — hiểu vấn đề kinh doanh, ship đúng giải pháp, và đo lường những gì quan trọng. Tôi làm tốt nhất khi được đi sâu vào sản phẩm và chịu trách nhiệm toàn bộ kết quả.",
       tools: "Công Cụ",
       frameworks: "Framework",
       certifications: "Chứng Chỉ",
@@ -270,24 +248,25 @@ export const translations: Record<Locale, Translations> = {
     projects: {
       arobid: {
         title: "Nền Tảng B2B Marketplace",
+        company: "Arobid Technology",
+        role: "Trưởng Nhóm Sản Phẩm",
         tagline: "Xây dựng sàn thương mại B2B từ đầu với tính năng AI",
-        overview:
-          "Dẫn dắt xây dựng nền tảng B2B Marketplace từ con số 0 — định nghĩa yêu cầu, quản lý backlog và phối hợp triển khai đa phòng ban. Nền tảng tích hợp các tính năng AI: thu thập dữ liệu doanh nghiệp, ghép cặp buyer-supplier, và hệ thống chấm điểm.",
-        challenge:
-          "Thương mại B2B tại Việt Nam vẫn phụ thuộc nhiều vào quy trình thủ công và các kênh phân mảnh. Chưa có nền tảng nào kết nối thông minh người mua và nhà cung cấp, đồng thời tự động hoá xác minh và ghép cặp.",
+        teamSize: "3 người product, 10 người cross-functional",
+        overview: "Dẫn dắt xây dựng nền tảng B2B Marketplace từ con số 0 — định nghĩa yêu cầu, quản lý backlog và phối hợp triển khai đa phòng ban. Nền tảng tích hợp các tính năng AI: thu thập dữ liệu doanh nghiệp, ghép cặp buyer-supplier, và hệ thống chấm điểm.",
+        challenge: "Thương mại B2B tại Việt Nam vẫn phụ thuộc nhiều vào quy trình thủ công và các kênh phân mảnh. Chưa có nền tảng nào kết nối thông minh người mua và nhà cung cấp, đồng thời tự động hoá xác minh và ghép cặp.",
         process: [
           "Nghiên cứu thị trường và đối thủ cho nền tảng B2B tại Đông Nam Á",
-          "Xác định tầm nhìn sản phẩm và phạm vi MVP cùng stakeholders",
+          "Xác định tầm nhìn sản phẩm và phạm vi MVP cùng các bên liên quan",
           "Thiết kế tính năng AI: crawler URL, OCR giấy phép kinh doanh, thuật toán ghép cặp",
           "Xây dựng và quản lý backlog với đội product 3 người",
           "Phối hợp đội cross-functional 10 người gồm kỹ thuật, thiết kế và vận hành",
           "Triển khai lặp lại với release hàng tuần và ưu tiên dựa trên dữ liệu",
         ],
         solutions: [
-          { title: "Thu Thập Dữ Liệu Doanh Nghiệp Bằng AI", description: "Xây dựng hệ thống crawler URL + OCR để tự động trích xuất và xác minh thông tin doanh nghiệp từ website và giấy tờ chính thức, giảm 80% nhập liệu thủ công." },
-          { title: "Ghép Cặp Buyer-Supplier Thông Minh", description: "Phát triển engine AI phân tích yêu cầu người mua với năng lực nhà cung cấp, ngành nghề, chứng chỉ và công suất để đề xuất ghép cặp tối ưu." },
-          { title: "Chấm Điểm Sản Phẩm & Doanh Nghiệp", description: "Tạo hệ thống chấm điểm đánh giá chất lượng sản phẩm và độ tin cậy doanh nghiệp dựa trên nhiều nguồn dữ liệu, giúp người mua ra quyết định đúng đắn." },
-          { title: "Nền Tảng Đầu-Cuối", description: "Thiết kế toàn bộ trải nghiệm marketplace: onboarding, xác minh KYB, đăng sản phẩm, tìm kiếm & khám phá, và quản lý RFQ." },
+          { title: "Thu Thập Dữ Liệu Bằng AI", description: "Xây dựng hệ thống crawler URL + OCR để tự động trích xuất và xác minh thông tin doanh nghiệp từ website và giấy tờ chính thức, giảm 80% nhập liệu thủ công." },
+          { title: "Ghép Cặp Thông Minh", description: "Phát triển engine AI phân tích yêu cầu người mua với năng lực nhà cung cấp, ngành nghề, chứng chỉ và công suất để đề xuất ghép cặp tối ưu." },
+          { title: "Chấm Điểm Sản Phẩm & Doanh Nghiệp", description: "Tạo hệ thống chấm điểm đánh giá chất lượng sản phẩm và độ tin cậy doanh nghiệp dựa trên nhiều nguồn dữ liệu." },
+          { title: "Nền Tảng Đầu-Cuối", description: "Thiết kế toàn bộ trải nghiệm marketplace: onboarding, xác minh doanh nghiệp, đăng sản phẩm, tìm kiếm và quản lý báo giá." },
         ],
         results: [
           { metric: "+30%", label: "Hiệu quả vận hành" },
@@ -302,11 +281,12 @@ export const translations: Record<Locale, Translations> = {
       },
       haravan: {
         title: "Nền Tảng Thương Mại Xã Hội",
+        company: "Haravan Technology",
+        role: "Product Owner",
         tagline: "Mở rộng sản phẩm thương mại đa module cho merchant B2B",
-        overview:
-          "Phụ trách nhiều module sản phẩm — Live Chat, Quản lý Đơn hàng và CRM — phục vụ merchant B2B. Xây roadmap theo OKR kinh doanh, ship 15-20 tính năng mỗi tháng, phối hợp đội cross-functional 15 người đa squad.",
-        challenge:
-          "Merchant cần nền tảng thống nhất để quản lý hội thoại, đơn hàng và quan hệ khách hàng trên nhiều kênh bán. Công cụ phân mảnh dẫn tới chi phí vận hành cao và trải nghiệm khách hàng kém.",
+        teamSize: "15 người cross-functional, đa squad",
+        overview: "Phụ trách nhiều module sản phẩm — Live Chat, Quản lý Đơn hàng và CRM — phục vụ merchant B2B. Xây roadmap theo OKR kinh doanh, ship 15-20 tính năng mỗi tháng, phối hợp đội cross-functional 15 người đa squad.",
+        challenge: "Merchant cần nền tảng thống nhất để quản lý hội thoại, đơn hàng và quan hệ khách hàng trên nhiều kênh bán. Công cụ phân mảnh dẫn tới chi phí vận hành cao và trải nghiệm khách hàng kém.",
         process: [
           "Nghiên cứu sâu người dùng với merchant ở nhiều quy mô",
           "Xác định chỉ số thành công phù hợp OKR kinh doanh",
@@ -317,9 +297,9 @@ export const translations: Record<Locale, Translations> = {
         ],
         solutions: [
           { title: "Live Chat Đa Kênh", description: "Xây dựng live chat omnichannel gộp hội thoại từ Facebook, Zalo, Instagram và website vào một inbox duy nhất cho merchant." },
-          { title: "Hệ Thống Quản Lý Đơn Hàng", description: "Thiết kế quy trình xử lý đơn hàng: tạo đơn, fulfillment, tích hợp vận chuyển và đổi trả trên tất cả kênh bán." },
+          { title: "Quản Lý Đơn Hàng", description: "Thiết kế quy trình xử lý đơn hàng: tạo đơn, fulfillment, tích hợp vận chuyển và đổi trả trên tất cả kênh bán." },
           { title: "CRM Cho Merchant", description: "Tạo công cụ phân khúc khách hàng và quản lý vòng đời giúp merchant hiểu hành vi mua và tự động tái tương tác." },
-          { title: "Lặp Lại Dựa Trên Dữ Liệu", description: "Triển khai tracking toàn diện (GA4, GTM, MS Clarity) để đo adoption, xác định điểm rơi và ưu tiên cải thiện." },
+          { title: "Cải Tiến Dựa Trên Dữ Liệu", description: "Triển khai tracking toàn diện (GA4, GTM, MS Clarity) để đo adoption, xác định điểm rơi và ưu tiên cải thiện." },
         ],
         results: [
           { metric: "+35%", label: "GMV mỗi merchant" },
@@ -327,18 +307,19 @@ export const translations: Record<Locale, Translations> = {
           { metric: "-50%", label: "Chi phí vận hành & QC" },
         ],
         lessons: [
-          "Ở quy mô lớn, cải thiện UX nhỏ tích lũy thành lớn — tăng 2% conversion trên hàng nghìn merchant là khổng lồ.",
+          "Ở quy mô lớn, cải thiện UX nhỏ tích lũy thành lớn — tăng 2% conversion trên hàng nghìn merchant là con số khổng lồ.",
           "Phân tích mà không hành động chỉ là báo cáo. Luôn ghép insight với một item backlog đã ưu tiên.",
           "Phối hợp đa squad cần ranh giới ownership rõ ràng và chỉ số thành công chung.",
         ],
       },
       "qa-solutions": {
         title: "Hệ Thống Thông Tin Bệnh Viện",
+        company: "QA Solutions",
+        role: "Product Owner & BA",
         tagline: "Xây dựng hệ thống y tế phục vụ 10,000+ lượt khám mỗi tháng",
-        overview:
-          "Định nghĩa yêu cầu và thiết kế giải pháp cho các module HIS: đặt lịch khám, Bệnh án Điện tử (EMR), thanh toán, quản lý kho và báo cáo. Phối hợp đội 13 người gồm phát triển, kiểm thử và thiết kế.",
-        challenge:
-          "Bệnh viện tại Việt Nam vận hành trên hệ thống giấy hoặc phân mảnh. Dữ liệu bệnh nhân bị cô lập, lịch hẹn thủ công, và tuân thủ quy định Bộ Y tế không nhất quán.",
+        teamSize: "13 người (8 dev, 4 QA, 1 designer)",
+        overview: "Định nghĩa yêu cầu và thiết kế giải pháp cho các module hệ thống bệnh viện: đặt lịch khám, Bệnh án Điện tử (EMR), thanh toán, quản lý kho và báo cáo. Phối hợp đội 13 người gồm phát triển, kiểm thử và thiết kế.",
+        challenge: "Bệnh viện tại Việt Nam vận hành trên hệ thống giấy hoặc phân mảnh. Dữ liệu bệnh nhân bị cô lập, lịch hẹn thủ công, và tuân thủ quy định Bộ Y tế không nhất quán.",
         process: [
           "Theo dõi bác sĩ, y tá và nhân viên hành chính để hiểu quy trình thực tế",
           "Lập bản đồ hành trình bệnh nhân từ đặt lịch đến xuất viện",
@@ -366,11 +347,12 @@ export const translations: Record<Locale, Translations> = {
       },
       laztar: {
         title: "Tư Vấn Đa Sản Phẩm",
+        company: "Laztar LLC",
+        role: "Quản Lý Giải Pháp Kinh Doanh",
         tagline: "Xây dựng sản phẩm từ đầu cho Thể thao, MMO và Outsourcing",
-        overview:
-          "Dẫn dắt phát triển sản phẩm từ đầu trên nhiều lĩnh vực — Đặt sân Thể thao, nền tảng MMO và dịch vụ Outsourcing. Phân tích nhu cầu kinh doanh, xây dựng business case, định nghĩa chiến lược go-to-market, và quản lý đội product 8 người.",
-        challenge:
-          "Công ty đang mở rộng vào nhiều ngành dọc cùng lúc, cần tư duy sản phẩm có hệ thống để tránh phân tán nguồn lực và đảm bảo mỗi sản phẩm có đường ra thị trường khả thi.",
+        teamSize: "8 thành viên đội product",
+        overview: "Dẫn dắt phát triển sản phẩm từ đầu trên nhiều lĩnh vực — Đặt sân Thể thao, nền tảng MMO và dịch vụ Outsourcing. Phân tích nhu cầu kinh doanh, xây dựng business case, định nghĩa chiến lược go-to-market, và quản lý đội product 8 người.",
+        challenge: "Công ty đang mở rộng vào nhiều ngành dọc cùng lúc, cần tư duy sản phẩm có hệ thống để tránh phân tán nguồn lực và đảm bảo mỗi sản phẩm có đường ra thị trường khả thi.",
         process: [
           "Phân tích cơ hội kinh doanh và xác nhận product-market fit cho từng ngành dọc",
           "Xây business case với mô hình doanh thu và định vị cạnh tranh",
