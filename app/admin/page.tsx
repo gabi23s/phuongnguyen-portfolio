@@ -25,6 +25,7 @@ interface Project {
   results: Result[];
   lessons: string[];
   teamSize: string;
+  screenshot?: string;
 }
 interface Profile {
   name: string;
@@ -196,6 +197,13 @@ function ProfileEditor({
 
   return (
     <div className="space-y-6">
+      <Card title="Portrait Photo">
+        <ImageUpload
+          label="Profile Photo"
+          currentSrc="/images/portrait.jpg"
+          uploadPath="images/portrait.jpg"
+        />
+      </Card>
       <Card title="Basic Info">
         <Field
           label="Name"
@@ -341,6 +349,15 @@ function ProjectEditor({
         </svg>
         Back to projects
       </button>
+
+      <Card title="Project Screenshot">
+        <ImageUpload
+          label="Screenshot"
+          currentSrc={project.screenshot || ""}
+          uploadPath={`images/projects/${project.slug}-1.png`}
+          onUploaded={(path) => set("screenshot", path)}
+        />
+      </Card>
 
       <Card title="Basic Info">
         <div className="grid grid-cols-2 gap-4">
@@ -740,6 +757,98 @@ function ResultEditor({
       >
         + Add Result
       </button>
+    </div>
+  );
+}
+
+function ImageUpload({
+  label,
+  currentSrc,
+  uploadPath,
+  onUploaded,
+}: {
+  label: string;
+  currentSrc: string;
+  uploadPath: string;
+  onUploaded?: (path: string) => void;
+}) {
+  const [preview, setPreview] = useState(currentSrc);
+  const [uploading, setUploading] = useState(false);
+  const [status, setStatus] = useState("");
+
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Preview
+    const reader = new FileReader();
+    reader.onload = (ev) => setPreview(ev.target?.result as string);
+    reader.readAsDataURL(file);
+
+    // Upload
+    setUploading(true);
+    setStatus("");
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("path", uploadPath);
+
+    try {
+      const res = await fetch("/api/upload", { method: "POST", body: formData });
+      const data = await res.json();
+      if (res.ok) {
+        setStatus("Uploaded!");
+        if (onUploaded) onUploaded(data.path);
+      } else {
+        setStatus("Error: " + (data.error || "Upload failed"));
+      }
+    } catch {
+      setStatus("Error uploading");
+    }
+    setUploading(false);
+  };
+
+  return (
+    <div>
+      <label className="block text-sm text-gray-500 mb-2">{label}</label>
+      <div className="flex items-start gap-4">
+        {/* Preview */}
+        <div className="w-40 h-28 bg-gray-100 rounded-xl overflow-hidden border border-gray-200 shrink-0">
+          {preview ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={preview}
+              alt={label}
+              className="w-full h-full object-cover"
+              onError={() => setPreview("")}
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">
+              No image
+            </div>
+          )}
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 cursor-pointer inline-block w-fit">
+            {uploading ? "Uploading..." : "Choose file"}
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleUpload}
+              className="hidden"
+              disabled={uploading}
+            />
+          </label>
+          <span className="text-xs text-gray-400">
+            Saves to: /{uploadPath}
+          </span>
+          {status && (
+            <span className={`text-xs ${status.startsWith("Error") ? "text-red-500" : "text-green-600"}`}>
+              {status}
+            </span>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
