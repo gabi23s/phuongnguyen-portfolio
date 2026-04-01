@@ -13,6 +13,7 @@
   "projects": [
     {
       "slug": "arobid",
+      "screenshot": "/images/projects/arobid-1.png",
       "title": "B2B Marketplace Platform",
       "company": "Arobid Technology",
       "role": "Product Team Lead",
@@ -49,6 +50,7 @@
     },
     {
       "slug": "haravan",
+      "screenshot": "/images/projects/haravan-1.png",
       "title": "Social Commerce Platform",
       "company": "Haravan Technology",
       "role": "Product Owner",
@@ -85,6 +87,7 @@
     },
     {
       "slug": "qa-solutions",
+      "screenshot": "/images/projects/qa-solutions-4.png",
       "title": "Hospital Information System",
       "company": "QA Solutions",
       "role": "Product Owner & BA",
@@ -121,6 +124,7 @@
     },
     {
       "slug": "laztar",
+      "screenshot": "/images/projects/laztar-1.png",
       "title": "Multi-Product Consulting",
       "company": "Laztar LLC",
       "role": "Business Solution Manager",

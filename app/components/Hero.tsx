@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { profile } from "../data/portfolio";
 import { useLang } from "./LangProvider";
 
@@ -69,15 +70,13 @@ export default function Hero() {
               <div className="absolute -top-4 -right-4 w-72 h-80 md:w-80 md:h-96 bg-accent rounded-3xl rotate-3" />
               {/* Photo container */}
               <div className="relative w-72 h-80 md:w-80 md:h-96 bg-dark rounded-3xl overflow-hidden -rotate-2">
-                {/* Placeholder — Gabi gửi ảnh thay sau */}
-                <div className="absolute inset-0 flex items-center justify-center text-white/30">
-                  <div className="text-center">
-                    <svg className="w-16 h-16 mx-auto mb-3 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 0115 0" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <p className="text-sm font-medium">Your Photo</p>
-                  </div>
-                </div>
+                <Image
+                  src="/images/portrait.jpg"
+                  alt="Phuong Nguyen"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
               </div>
               {/* Decorative elements */}
               <div className="absolute -bottom-6 -left-6 w-20 h-20 border-4 border-accent rounded-full opacity-30" />
