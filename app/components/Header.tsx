@@ -3,16 +3,32 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useLang } from "./LangProvider";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { locale, t, toggle } = useLang();
 
+  const menuVariants = {
+    hidden: { opacity: 0, y: -100 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+    exit: { opacity: 0, y: -100, transition: { duration: 0.3 } },
+  };
+
+  const linkVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      x: 0,
+      transition: { delay: i * 0.1, duration: 0.4 },
+    }),
+  };
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+        <Link href="/" className="flex items-center gap-2 group">
+          <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center group-hover:shadow-lg transition-all">
             <span className="text-white font-bold text-sm">P</span>
           </div>
           <span className="text-lg font-bold tracking-tight">
@@ -48,7 +64,7 @@ export default function Header() {
             {locale === "en" ? "VIE" : "ENG"}
           </button>
           <button
-            className="p-2 text-foreground"
+            className="p-2 text-foreground hover:text-accent transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menu"
           >
@@ -59,24 +75,40 @@ export default function Header() {
         </div>
       </nav>
 
-      {menuOpen && (
-        <div className="md:hidden border-t border-border bg-background px-6 py-5 flex flex-col gap-4">
-          {[
-            { href: "/#work", label: t.nav.work },
-            { href: "/#about", label: t.nav.about },
-            { href: "/#contact", label: t.nav.contact },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              className="text-lg font-semibold text-foreground"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
-      )}
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden border-t border-border bg-surface px-6 py-8 flex flex-col gap-6"
+          >
+            {[
+              { href: "/#work", label: t.nav.work, i: 0 },
+              { href: "/#about", label: t.nav.about, i: 1 },
+              { href: "/#contact", label: t.nav.contact, i: 2 },
+            ].map((item) => (
+              <motion.div
+                key={item.href}
+                custom={item.i}
+                variants={linkVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <Link
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-lg font-semibold text-foreground hover:text-accent transition-colors"
+                >
+                  {item.label}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

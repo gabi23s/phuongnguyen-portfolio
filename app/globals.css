@@ -1,14 +1,15 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Caveat:wght@400;700&display=swap');
+@import "tailwindcss";
 
 :root {
-  --background: #fafaf8;
+  --background: #f0ede8;
   --foreground: #1a1a1a;
   --accent: #F5A623;
   --accent-dark: #E09000;
   --muted: #888888;
-  --border: #e8e8e4;
+  --border: #e5dfd7;
   --card: #ffffff;
+  --surface: #ede8e2;
   --dark: #1a1a1a;
 }
 
@@ -20,6 +21,7 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-card: var(--card);
+  --color-surface: var(--surface);
   --color-dark: var(--dark);
   --font-sans: var(--font-poppins);
   --font-mono: var(--font-poppins);
@@ -57,6 +59,36 @@ html {
   50% { transform: translateY(-8px); }
 }
 
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes textReveal {
+  from { opacity: 0; clip-path: inset(0 100% 0 0); }
+  to { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(245, 166, 35, 0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.7s ease-out forwards;
 }
@@ -68,6 +100,24 @@ html {
 }
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+.animate-slide-down {
+  animation: slideDown 0.5s ease-out forwards;
+}
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+.animate-slide-right {
+  animation: slideRight 0.5s ease-out forwards;
+}
+.animate-text-reveal {
+  animation: textReveal 0.6s ease-out forwards;
+}
+.animate-glow {
+  animation: glow 2s infinite;
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }
 
 .animate-delay-100 { animation-delay: 0.1s; }
